@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ember Duel — a card game of fire and wits</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2314532d'/%3E%3Ctext x='16' y='24' font-size='20' text-anchor='middle' fill='%23ff6b35'%3E▲%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+<div id="app">
+  <!-- Title screen -->
+  <section id="title-screen" class="screen">
+    <div class="title-embers"><span class="e-flame">▲</span><span class="e-frost">◆</span><span class="e-leaf">●</span><span class="e-storm">★</span></div>
+    <h1>EMBER DUEL</h1>
+    <p class="subtitle">A card duel of fire, frost, leaf and storm.</p>
+    <p class="rules">
+      You and Ash the Ember Knight both start at <b>20 life</b>. Each round Ash
+      telegraphs a move — then you play <b>one card</b> from your hand of five.
+      <b>Flame ▲</b> strikes, <b>Frost ◆</b> shields and banks an ember so your
+      next Flame hits +2, <b>Leaf ●</b> heals, and <b>Storm ★</b> tricks crack
+      shields and kindle your fire. First duelist to 0 life loses.
+    </p>
+    <button id="start-button" class="big-button" type="button">BEGIN THE DUEL</button>
+    <p class="hint">Click a card or press 1–5 to play it · Enter to start · R to play again</p>
+  </section>
+
+  <!-- The table -->
+  <section id="table-screen" class="screen hidden">
+    <div class="duelist-row">
+      <div class="duelist-name">ASH <span class="tag">the Ember Knight · your rival</span></div>
+      <div class="life-wrap">
+        <span id="foe-shield" class="shield-badge"></span>
+        <div class="life-bar"><div id="foe-life-fill" class="life-fill foe" style="width:100%"></div></div>
+        <span id="foe-life" class="life-number">20</span>
+      </div>
+    </div>
+    <div class="hand-label">Ash's hand</div>
+    <div id="foe-hand" class="hand foe-hand"></div>
+    <div id="centre">
+      <div id="played-area">
+        <div class="played-slot"><span class="who">You played</span><div id="you-played"></div></div>
+        <div class="played-slot"><span class="who">Ash played</span><div id="foe-played"></div></div>
+      </div>
+      <div>
+        <div id="intent-box">Ash is thinking…</div>
+        <div id="combo-box"></div>
+        <div id="round-box">Round 1</div>
+      </div>
+    </div>
+    <div class="hand-label">Your hand — click a card or press 1–5</div>
+    <div id="you-hand" class="hand"></div>
+    <div class="duelist-row">
+      <div class="duelist-name">YOU <span class="tag">the challenger</span></div>
+      <div class="life-wrap">
+        <span id="you-shield" class="shield-badge"></span>
+        <div class="life-bar"><div id="you-life-fill" class="life-fill" style="width:100%"></div></div>
+        <span id="you-life" class="life-number">20</span>
+      </div>
+    </div>
+    <div id="log"></div>
+  </section>
+
+  <!-- Win / loss screen -->
+  <section id="end-screen" class="screen hidden">
+    <div id="confetti" class="confetti"></div>
+    <h1 id="end-title">VICTORY</h1>
+    <p id="end-line">The embers are yours.</p>
+    <p id="end-stats"></p>
+    <button id="again-button" class="big-button" type="button">DUEL AGAIN</button>
+    <p class="hint">Press R to play again</p>
+  </section>
+
+  <p id="status" role="status" aria-live="polite"></p>
+</div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
